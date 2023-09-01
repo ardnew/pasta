@@ -66,6 +66,18 @@ func findClipboardUtility() commandInfo {
 		}
 	}
 
+	if os.Getenv("WSL_DISTRO_NAME") != "" {
+		pasteCmdArgs = powershellExePasteArgs
+		copyCmdArgs = clipExeCopyArgs
+		trimDos = true
+
+		if _, err := exec.LookPath(clipExe); err == nil {
+			if _, err := exec.LookPath(powershellExe); err == nil {
+				return
+			}
+		}
+	}
+
 	c.pasteCmdArgs = xclipPasteArgs
 	c.copyCmdArgs = xclipCopyArgs
 
@@ -85,16 +97,6 @@ func findClipboardUtility() commandInfo {
 
 	if _, err := exec.LookPath(termuxClipboardSet); err == nil {
 		if _, err := exec.LookPath(termuxClipboardGet); err == nil {
-			return c
-		}
-	}
-
-	c.pasteCmdArgs = powershellExePasteArgs
-	c.copyCmdArgs = clipExeCopyArgs
-	c.trimDOS = true
-
-	if _, err := exec.LookPath(clipExe); err == nil {
-		if _, err := exec.LookPath(powershellExe); err == nil {
 			return c
 		}
 	}
