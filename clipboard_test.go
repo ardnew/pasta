@@ -1,17 +1,13 @@
-// Copyright 2013 @atotto. All rights reserved.
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
-
 package clipboard_test
 
 import (
 	"testing"
 
-	. "github.com/atotto/clipboard"
+	. "github.com/antonmedv/clipboard"
 )
 
 func TestCopyAndPaste(t *testing.T) {
-	expected := "日本語"
+	expected := "Привет, мир!"
 
 	err := WriteAll(expected)
 	if err != nil {
@@ -29,8 +25,8 @@ func TestCopyAndPaste(t *testing.T) {
 }
 
 func TestMultiCopyAndPaste(t *testing.T) {
-	expected1 := "French: éèêëàùœç"
-	expected2 := "Weird UTF-8: 💩☃"
+	expected1 := "Привет, мир!"
+	expected2 := "👋🏻"
 
 	err := WriteAll(expected1)
 	if err != nil {
@@ -66,7 +62,7 @@ func BenchmarkReadAll(b *testing.B) {
 }
 
 func BenchmarkWriteAll(b *testing.B) {
-	text := "いろはにほへと"
+	text := "Привет, мир!"
 	for i := 0; i < b.N; i++ {
 		WriteAll(text)
 	}

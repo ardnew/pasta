@@ -3,14 +3,14 @@ package clipboard_test
 import (
 	"fmt"
 
-	"github.com/atotto/clipboard"
+	"github.com/antonmedv/clipboard"
 )
 
 func Example() {
-	clipboard.WriteAll("日本語")
+	clipboard.WriteAll("Привет, мир!")
 	text, _ := clipboard.ReadAll()
 	fmt.Println(text)
 
 	// Output:
-	// 日本語
+	// Привет, мир!
 }

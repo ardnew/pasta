@@ -1,1 +1,3 @@
-module github.com/atotto/clipboard
+module github.com/antonmedv/clipboard
+
+go 1.18
