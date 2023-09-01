@@ -2,24 +2,20 @@
 
 [![GoDoc](https://godoc.org/github.com/antonmedv/clipboard?status.svg)](http://godoc.org/github.com/antonmedv/clipboard)
 
-Provide copying and pasting to the Clipboard for Go.
+Cross-platform clipboard package that works on Windows, WSL, macOS and Linux.
 
-```
+```bash
 go get github.com/antonmedv/clipboard
 ```
 
-Supported platforms:
-- macOS
-- Windows + WSL
-- Linux
-
 ## Usage
 
+
 ```go
-import "github.com/antonmedv/clipboard"
-
 clipboard.WriteAll("Hello World!")
+```
 
+```go
 text, err := clipboard.ReadAll()
 ```
 
