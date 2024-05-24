@@ -3,12 +3,12 @@ package pasta_test
 import (
 	"fmt"
 
-	"github.com/antonmedv/clipboard"
+	"github.com/ardnew/pasta"
 )
 
 func Example() {
-	clipboard.WriteAll("Привет, мир!")
-	text, _ := clipboard.ReadAll()
+	pasta.WriteAll("Привет, мир!")
+	text, _ := pasta.ReadAll()
 	fmt.Println(text)
 
 	// Output:

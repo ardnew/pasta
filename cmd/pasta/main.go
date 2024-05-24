@@ -17,15 +17,13 @@ func usage() {
 	} else {
 		exe = filepath.Base(exe)
 	}
-	desc := `USAGE
-	%[1]s -           # (copy) copy stdin to clipboard
-	%[1]s             # (paste) write clipboard contents to stdout
-
-	%[1]s < FILE      # (copy) write FILE contents to clipboard
-	%[1]s > FILE      # (paste) overwrite FILE with clipboard contents
-
-	COMMAND | %[1]s   # (copy) write COMMAND output to clipboard
-	%[1]s | COMMAND   # (paste) pipe clipboard contents to COMMAND
+	desc := `usage:
+  %[1]s -           # (copy) copy stdin to clipboard
+  %[1]s             # (paste) write clipboard contents to stdout
+  %[1]s < FILE      # (copy) write FILE contents to clipboard
+  %[1]s > FILE      # (paste) overwrite FILE with clipboard contents
+  COMMAND | %[1]s   # (copy) write COMMAND output to clipboard
+  %[1]s | COMMAND   # (paste) pipe clipboard contents to COMMAND
 `
 	fmt.Printf(desc, exe)
 }
