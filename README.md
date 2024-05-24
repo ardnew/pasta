@@ -1,23 +1,31 @@
-# Clipboard for Go
+# Cross-platform access to system clipboard
 
-[![GoDoc](https://godoc.org/github.com/antonmedv/clipboard?status.svg)](http://godoc.org/github.com/antonmedv/clipboard)
+[![GoDoc](https://godoc.org/github.com/ardnew/pasta?status.svg)](http://godoc.org/github.com/ardnew/pasta)
 
-Cross-platform clipboard package that works on Windows, WSL, macOS and Linux.
+Go module and CLI utility that works on Windows, WSL, macOS and Linux.
+
+## Install
 
 ```bash
-go get github.com/antonmedv/clipboard
+# Install the latest CLI utility only
+go install github.com/ardnew/pasta/cmd/pasta@latest
+
+# Or, add latest version as dependency to your Go module
+go get github.com/ardnew/pasta
 ```
 
 ## Usage
 
-
-```go
-clipboard.WriteAll("Hello World!")
-```
-
-```go
-text, err := clipboard.ReadAll()
-```
+- Module
+  - See [godoc](http://godoc.org/github.com/ardnew/pasta) for detailed API.
+  - Copy to clipboard
+    ```go
+    clipboard.WriteAll("Hello World!")
+    ```
+  - Paste from clipboard
+    ```go
+    text, err := clipboard.ReadAll()
+    ```
 
 ## License
 

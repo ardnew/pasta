@@ -1,4 +1,4 @@
-package clipboard_test
+package pasta_test
 
 import (
 	"testing"

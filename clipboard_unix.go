@@ -1,7 +1,7 @@
 //go:build freebsd || linux || netbsd || openbsd || solaris || dragonfly
 // +build freebsd linux netbsd openbsd solaris dragonfly
 
-package clipboard
+package pasta
 
 import (
 	"errors"

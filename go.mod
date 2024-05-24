@@ -1,3 +1,3 @@
-module github.com/antonmedv/clipboard
+module github.com/ardnew/pasta
 
 go 1.18

@@ -1,7 +1,7 @@
 //go:build darwin
 // +build darwin
 
-package clipboard
+package pasta
 
 import (
 	"os/exec"

@@ -1,4 +1,4 @@
-package clipboard
+package pasta
 
 // ReadAll read string from clipboard
 func ReadAll() (string, error) {

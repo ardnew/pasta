@@ -1,7 +1,7 @@
 //go:build plan9
 // +build plan9
 
-package clipboard
+package pasta
 
 import (
 	"io/ioutil"
