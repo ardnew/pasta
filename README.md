@@ -16,6 +16,20 @@ go get github.com/ardnew/pasta
 
 ## Usage
 
+- CLI
+    ```bash
+    $ pasta -h
+    USAGE
+      pasta -           # (copy) copy stdin to clipboard
+      pasta             # (paste) write clipboard contents to stdout
+
+      pasta < FILE      # (copy) write FILE contents to clipboard
+      pasta > FILE      # (paste) overwrite FILE with clipboard contents
+
+      COMMAND | pasta   # (copy) write COMMAND output to clipboard
+      pasta | COMMAND   # (paste) pipe clipboard contents to COMMAND
+    ```
+
 - Module
   - See [godoc](http://godoc.org/github.com/ardnew/pasta) for detailed API.
   - Copy to clipboard
