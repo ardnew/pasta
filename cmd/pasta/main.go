@@ -4,51 +4,65 @@ import (
 	"flag"
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"path/filepath"
 
 	"github.com/ardnew/pasta"
+	"github.com/pkg/errors"
 )
 
-func usage() {
-	exe, err := os.Executable()
+const version = "1.2.1"
+
+var exe string
+
+func init() {
+	var err error
+	exe, err = os.Executable()
 	if err != nil {
-		exe = "%!s(BADEXECUTABLE)"
+		exe = "%!s(BADEXE)"
 	} else {
 		exe = filepath.Base(exe)
 	}
-	desc := `usage:
-  %[1]s -           # (copy) copy stdin to clipboard
-  %[1]s             # (paste) write clipboard contents to stdout
-  %[1]s < FILE      # (copy) write FILE contents to clipboard
-  %[1]s > FILE      # (paste) overwrite FILE with clipboard contents
-  COMMAND | %[1]s   # (copy) write COMMAND output to clipboard
-  %[1]s | COMMAND   # (paste) pipe clipboard contents to COMMAND
-`
-	fmt.Printf(desc, exe)
 }
 
-func assert[T comparable](v, x T) {
-	if v != x {
-		panic(fmt.Errorf("assertion failed: %v != %v", v, x))
-	}
+func usage() {
+	desc := `%[1]s version %[2]s usage:
+
+  %[1]s -           # (copy) copy stdin to clipboard
+  %[1]s             # (paste) write clipboard contents to stdout
+
+  %[1]s < FILE      # (copy) write FILE contents to clipboard
+  %[1]s > FILE      # (paste) overwrite FILE with clipboard contents
+
+  COMMAND | %[1]s   # (copy) write COMMAND output to clipboard
+  %[1]s | COMMAND   # (paste) pipe clipboard contents to COMMAND
+
+`
+	fmt.Printf(desc, exe, version)
 }
 
 func main() {
 	flag.Usage = usage
 	flag.Parse()
 
+	assertNil := func(err error) {
+		if err != nil {
+			log.Fatalf("error: %v\n\t(see: %s -h)", err, exe)
+		}
+	}
+
 	if !isInteractive() || flag.Arg(0) == "-" {
 		// copy mode: stdin is connected to a pipe or file descriptor
 		out, err := io.ReadAll(os.Stdin)
-		assert(err, nil)
+		assertNil(errors.Wrap(err, "read from stdin"))
 		err = pasta.WriteAll(string(out))
-		assert(err, nil)
+		assertNil(errors.Wrap(err, "write to clipboard"))
 	} else {
 		// paste mode: stdin is not in a valid state for reading
 		out, err := pasta.ReadAll()
-		assert(err, nil)
+		assertNil(errors.Wrap(err, "read from clipboard"))
 		_, err = os.Stdout.WriteString(out)
-		assert(err, nil)
+		assertNil(errors.Wrap(err, "write to stdout"))
 	}
 }

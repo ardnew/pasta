@@ -3,7 +3,7 @@ package pasta_test
 import (
 	"testing"
 
-	. "github.com/antonmedv/clipboard"
+	. "github.com/ardnew/pasta"
 )
 
 func TestCopyAndPaste(t *testing.T) {
