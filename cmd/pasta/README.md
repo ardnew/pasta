@@ -14,13 +14,17 @@ go install github.com/ardnew/pasta/cmd/pasta@latest
 
 ```bash
 $ pasta -h
-usage:
+pasta version 1.2.2 usage:
+
   pasta -           # (copy) copy stdin to clipboard
   pasta             # (paste) write clipboard contents to stdout
+
   pasta < FILE      # (copy) write FILE contents to clipboard
   pasta > FILE      # (paste) overwrite FILE with clipboard contents
+
   COMMAND | pasta   # (copy) write COMMAND output to clipboard
   pasta | COMMAND   # (paste) pipe clipboard contents to COMMAND
+
 ```
 
 ## License
